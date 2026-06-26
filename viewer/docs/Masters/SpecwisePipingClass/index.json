@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "source": "optional-specwise-shards-not-bundled-in-viewer-docs",
+  "generatedAt": "2026-06-25T00:00:00.000Z",
+  "rowCount": 0,
+  "classCount": 0,
+  "shardBase": "docs/Masters/SpecwisePipingClass/",
+  "matching": {
+    "mode": "optional-empty-viewer-docs-mirror",
+    "description": "Viewer-docs mirror used by GitHub Pages deployments whose site root is viewer/. The full specwise shard set remains optional; this manifest prevents startup 404 noise when shards are not published with the site bundle."
+  },
+  "classes": {}
+}

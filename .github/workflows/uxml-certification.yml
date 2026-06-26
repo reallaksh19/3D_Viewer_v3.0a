@@ -1,0 +1,155 @@
+name: UXML Certification
+
+on:
+  pull_request:
+    paths:
+      - "viewer/uxml/**"
+      - "viewer/converters/inputxml-glb/**"
+      - "viewer/converters/inputxml-managed-stage/**"
+      - "viewer/rvm/**"
+      - "viewer/rvm-viewer/**"
+      - "viewer/core/app.js"
+      - "viewer/main.js"
+      - "viewer/tabs/viewer3d-rvm-tab.js"
+      - "viewer/tabs/viewer3d-rvm-tab-renderer.js"
+      - "viewer/tabs/model-converters/ModelConvertersTab.js"
+      - "viewer/tabs/model-converters/inputxml-managed-stage-bridge.js"
+      - "viewer/tabs/model-converters/converters/inputxml-to-stagedjson.js"
+      - "viewer/js/pcf2glb/glb/enhanceSupportDirectionProxy.js"
+      - "viewer/js/pcf2glb/glb/buildExportScene.js"
+      - "viewer/tabs/model-converters-tab.js"
+      - "viewer/tabs/model-converters/converters/inputxml-to-glb.js"
+      - "viewer/enrichment/**"
+      - "scripts/test-selected-geometry-*.mjs"
+      - "viewer/tests/uxml-*.test.js"
+      - "viewer/tests/rvm-pcf-*.test.js"
+      - "viewer/tests/app-entrypoint-static.test.js"
+      - "viewer/tests/unit/rvm/**"
+      - "viewer/tests/inputxml-glb-directional-restraints.test.js"
+      - "viewer/tests/inputxml-direct-managed-stage.test.js"
+      - "tools/uxml-certification.mjs"
+      - ".github/workflows/uxml-certification.yml"
+      - "Benchmarks/RVM JSON to PCF UXML Topology/**"
+      - "Benchmarks/INPUT XML to CII 2019/**"
+  push:
+    branches:
+      - main
+    paths:
+      - "viewer/uxml/**"
+      - "viewer/converters/inputxml-glb/**"
+      - "viewer/converters/inputxml-managed-stage/**"
+      - "viewer/rvm/**"
+      - "viewer/rvm-viewer/**"
+      - "viewer/core/app.js"
+      - "viewer/main.js"
+      - "viewer/tabs/viewer3d-rvm-tab.js"
+      - "viewer/tabs/viewer3d-rvm-tab-renderer.js"
+      - "viewer/tabs/model-converters/ModelConvertersTab.js"
+      - "viewer/tabs/model-converters/inputxml-managed-stage-bridge.js"
+      - "viewer/tabs/model-converters/converters/inputxml-to-stagedjson.js"
+      - "viewer/js/pcf2glb/glb/enhanceSupportDirectionProxy.js"
+      - "viewer/js/pcf2glb/glb/buildExportScene.js"
+      - "viewer/tabs/model-converters-tab.js"
+      - "viewer/tabs/model-converters/converters/inputxml-to-glb.js"
+      - "viewer/enrichment/**"
+      - "scripts/test-selected-geometry-*.mjs"
+      - "viewer/tests/uxml-*.test.js"
+      - "viewer/tests/rvm-pcf-*.test.js"
+      - "viewer/tests/app-entrypoint-static.test.js"
+      - "viewer/tests/unit/rvm/**"
+      - "viewer/tests/inputxml-glb-directional-restraints.test.js"
+      - "viewer/tests/inputxml-direct-managed-stage.test.js"
+      - "tools/uxml-certification.mjs"
+      - ".github/workflows/uxml-certification.yml"
+      - "Benchmarks/RVM JSON to PCF UXML Topology/**"
+      - "Benchmarks/INPUT XML to CII 2019/**"
+  workflow_dispatch:
+
+jobs:
+  certify:
+    name: certify
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Install test runner
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if [ -f package.json ]; then
+            echo "package.json found. Installing project dependencies with pnpm."
+            pnpm install --frozen-lockfile || pnpm install --no-frozen-lockfile
+          else
+            echo "package.json not found. Installing Vitest, jsdom, and Three as temporary CI dependencies."
+            npm install --no-save vitest jsdom three
+          fi
+
+      - name: Run app entrypoint static contract
+        run: node viewer/tests/app-entrypoint-static.test.js
+
+      - name: Run UXML static certification
+        run: node tools/uxml-certification.mjs
+
+      - name: Run InputXML GLB directional restraint certification
+        run: node viewer/tests/inputxml-glb-directional-restraints.test.js
+
+      - name: Run direct InputXML stagedJSON certification
+        run: node viewer/tests/inputxml-direct-managed-stage.test.js
+
+      - name: Run selected-geometry enrichment contracts
+        shell: bash
+        run: |
+          set -euo pipefail
+          tests=(
+            scripts/test-selected-geometry-scope.mjs
+            scripts/test-selected-geometry-package.mjs
+            scripts/test-selected-geometry-enrichment.mjs
+            scripts/test-selected-geometry-enrichment-ui.mjs
+            scripts/test-selected-geometry-workflow-cleanup.mjs
+          )
+          for test_file in "${tests[@]}"; do
+            echo "Running ${test_file}"
+            node "${test_file}"
+          done
+
+      - name: Run browser RVM unit contracts
+        shell: bash
+        run: |
+          set -euo pipefail
+          : > browser-rvm-unit.log
+          tests=(
+            viewer/tests/unit/rvm/browser-rvm-att-parser.test.js
+            viewer/tests/unit/rvm/browser-rvm-att-enricher.test.js
+            viewer/tests/unit/rvm/browser-rvm-parser.test.js
+            viewer/tests/unit/rvm/browser-rvm-hierarchy.test.js
+            viewer/tests/unit/rvm/browser-rvm-render-scene-builder.test.js
+            viewer/tests/unit/rvm/browser-rvm-render-att-metadata.test.js
+            viewer/tests/unit/rvm/browser-rvm-load-bridge-render-scene-contract.test.js
+            viewer/tests/unit/rvm/browser-rvm-tab-fallback-contract.test.js
+          )
+          for test_file in "${tests[@]}"; do
+            echo "Running ${test_file}" | tee -a browser-rvm-unit.log
+            node "${test_file}" 2>&1 | tee -a browser-rvm-unit.log
+          done
+
+      - name: Upload browser RVM unit log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: browser-rvm-unit-log
+          path: browser-rvm-unit.log
+          if-no-files-found: ignore

@@ -1,0 +1,61 @@
+{
+  "version": "v69",
+  "mode": "ISONOTE expected restraints",
+  "sourceGlb": "/mnt/data/BM_CII_v67_IsonoteVisualCleanup/BM_CII_Enriched_v67_isonote_visual_cleanup_engineering.glb",
+  "outputGlb": "/mnt/data/BM_CII_v69_IsonoteAxialResolver/BM_CII_Enriched_v69_isonote_axial_resolver_engineering.glb",
+  "removedOldLineStopGeometryCount": 8,
+  "addedCorrectedAxialRecords": [
+    {
+      "node": 35,
+      "source": "ISONOTE",
+      "sourceMode": "EXPECTED_RESTRAINT",
+      "family": "LINE_STOP",
+      "axisBasis": "AXIAL",
+      "axis": "PIPE_AXIAL",
+      "axisDominant": "Z",
+      "sign": "\u00b1",
+      "renderKind": "LINE_STOP",
+      "loadText": "15kN",
+      "sourceNoteName": ":/PS-123 :ISONOTE 'REST(28kN), GUIDE(6kN),LINE STOP(15kN)'",
+      "gapMm": null,
+      "engineeringContact": "AXIAL_CORNER_TOUCH",
+      "visualGapMeters": 0.0,
+      "visualResolver": "OD_X_2_OVER_3_APPLIED_AFTER_AXIAL_CLASSIFICATION",
+      "visualResolverOffsetMeters": 0.0762,
+      "odMeters": 0.1143,
+      "mapper": "COMMON_INPUTXML_SUPPORT_MAPPER_CONTRACT",
+      "od2RadialContactApplied": false
+    },
+    {
+      "node": 205,
+      "source": "ISONOTE",
+      "sourceMode": "EXPECTED_RESTRAINT",
+      "family": "LINE_STOP",
+      "axisBasis": "AXIAL",
+      "axis": "PIPE_AXIAL",
+      "axisDominant": "X",
+      "sign": "\u00b1",
+      "renderKind": "LINE_STOP",
+      "loadText": "6kN",
+      "sourceNoteName": ":/PS-456 :ISONOTE 'REST(10kN), HOLDDOWN,LINE STOP(6kN), Holddown without Guide Can Spring'",
+      "gapMm": null,
+      "engineeringContact": "AXIAL_CORNER_TOUCH",
+      "visualGapMeters": 0.0,
+      "visualResolver": "OD_X_2_OVER_3_APPLIED_AFTER_AXIAL_CLASSIFICATION",
+      "visualResolverOffsetMeters": 0.059267,
+      "odMeters": 0.0889,
+      "mapper": "COMMON_INPUTXML_SUPPORT_MAPPER_CONTRACT",
+      "od2RadialContactApplied": false
+    }
+  ],
+  "rules": [
+    "ISONOTE route remains through normalized common InputXML support-mapper contract.",
+    "First apply engineering contact/gap rule.",
+    "Axial restraints do not use OD/2 radial contact.",
+    "Axial no-gap: opposing arrow tips/corners touch.",
+    "Axial positive gap: separation = 10 * gap; ISONOTE GAP parser assumes mm when unit absent.",
+    "After final symbol is classified as pipe-parallel/axial, visual resolver offset OD*2/3 is applied to the whole axial symbol lane.",
+    "REST/GUIDE/HOLDDOWN/spring warning symbols are preserved from v67 and are not shifted by this axial resolver.",
+    "Line-stop circular markers are replaced by small touch/gap markers to avoid misleading large circles."
+  ]
+}

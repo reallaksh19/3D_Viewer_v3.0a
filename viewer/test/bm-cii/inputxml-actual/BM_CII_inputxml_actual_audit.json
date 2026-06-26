@@ -1,0 +1,371 @@
+{
+  "version": "v68",
+  "mode": "InputXML actual restraints",
+  "sourceGlb": "/mnt/data/BM_CII_v63_ComponentMetadataFixed/BM_CII_Enriched_v63_component_metadata_fixed_engineering.glb",
+  "outputGlb": "/mnt/data/BM_CII_v68_InputXmlAxialResolver/BM_CII_Enriched_v68_inputxml_axial_resolver_engineering.glb",
+  "rules": [
+    "Engineering contact is applied before visual resolver classification.",
+    "Visual resolver offset is applied only to final axial / pipe-parallel symbols.",
+    "Visual resolver offset magnitude is OD*2/3.",
+    "REST/GUIDE/HOLDDOWN radial/vertical/lateral symbols are not shifted by the axial resolver.",
+    "InputXML spring at node 205 is axis_Y coil-only, not pipe-parallel to the X branch; not shifted.",
+    "InputXML GAP is record-scoped; sentinel/missing gap does not carry forward.",
+    "No positive InputXML axial gap was applied in this benchmark file, so axial tips/corners remain based on existing contact geometry before visual lane staging."
+  ],
+  "resolverValues": {
+    "OD_114_299995_m": 0.114299995,
+    "OD_114_299995_x_2_over_3_m": 0.07619999666666667,
+    "OD_88_900002_m": 0.088900002,
+    "OD_88_900002_x_2_over_3_m": 0.059266668
+  },
+  "modifiedGeometryCount": 10,
+  "modifiedGeometries": [
+    {
+      "geometry": "BM_CII_BAKED_SUPPORT_inputxml_03_node_35_kind_AXIS_RESTRAINT_axis_Z-axis-pair-plus-od-gap-shaft",
+      "source": "InputXML actual restraint",
+      "rule": "AXIAL_Z_PIPE_PARALLEL_VISUAL_RESOLVER_Y_NEG_OD_2_3",
+      "delta": [
+        0.0,
+        -0.01905,
+        0.0
+      ],
+      "boundsBefore": [
+        [
+          -0.0065,
+          -0.06365,
+          -2.7873
+        ],
+        [
+          0.0065,
+          -0.05065,
+          -2.7173
+        ]
+      ],
+      "boundsAfter": [
+        [
+          -0.0065,
+          -0.0827,
+          -2.7873
+        ],
+        [
+          0.0065,
+          -0.0697,
+          -2.7173
+        ]
+      ]
+    },
+    {
+      "geometry": "BM_CII_BAKED_SUPPORT_inputxml_03_node_35_kind_AXIS_RESTRAINT_axis_Z-axis-pair-plus-od-gap-head",
+      "source": "InputXML actual restraint",
+      "rule": "AXIAL_Z_PIPE_PARALLEL_VISUAL_RESOLVER_Y_NEG_OD_2_3",
+      "delta": [
+        0.0,
+        -0.01905,
+        0.0
+      ],
+      "boundsBefore": [
+        [
+          -0.04,
+          -0.09715,
+          -2.7173
+        ],
+        [
+          0.04,
+          -0.01715,
+          -2.6423
+        ]
+      ],
+      "boundsAfter": [
+        [
+          -0.04,
+          -0.1162,
+          -2.7173
+        ],
+        [
+          0.04,
+          -0.0362,
+          -2.6423
+        ]
+      ]
+    },
+    {
+      "geometry": "BM_CII_BAKED_SUPPORT_inputxml_03_node_35_kind_AXIS_RESTRAINT_axis_Z-axis-pair-minus-od-gap-shaft",
+      "source": "InputXML actual restraint",
+      "rule": "AXIAL_Z_PIPE_PARALLEL_VISUAL_RESOLVER_Y_NEG_OD_2_3",
+      "delta": [
+        0.0,
+        -0.01905,
+        0.0
+      ],
+      "boundsBefore": [
+        [
+          -0.0065,
+          -0.06365,
+          -2.5673
+        ],
+        [
+          0.0065,
+          -0.05065,
+          -2.4973
+        ]
+      ],
+      "boundsAfter": [
+        [
+          -0.0065,
+          -0.0827,
+          -2.5673
+        ],
+        [
+          0.0065,
+          -0.0697,
+          -2.4973
+        ]
+      ]
+    },
+    {
+      "geometry": "BM_CII_BAKED_SUPPORT_inputxml_03_node_35_kind_AXIS_RESTRAINT_axis_Z-axis-pair-minus-od-gap-head",
+      "source": "InputXML actual restraint",
+      "rule": "AXIAL_Z_PIPE_PARALLEL_VISUAL_RESOLVER_Y_NEG_OD_2_3",
+      "delta": [
+        0.0,
+        -0.01905,
+        0.0
+      ],
+      "boundsBefore": [
+        [
+          -0.04,
+          -0.09715,
+          -2.6423
+        ],
+        [
+          0.04,
+          -0.01715,
+          -2.5673
+        ]
+      ],
+      "boundsAfter": [
+        [
+          -0.04,
+          -0.1162,
+          -2.6423
+        ],
+        [
+          0.04,
+          -0.0362,
+          -2.5673
+        ]
+      ]
+    },
+    {
+      "geometry": "BM_CII_BAKED_SUPPORT_inputxml_04_node_130_kind_LINESTOP_axis_+Z-single-axial-od-gap-shaft",
+      "source": "InputXML actual restraint",
+      "rule": "AXIAL_LINESTOP_Z_VISUAL_RESOLVER_Y_NEG_OD_2_3",
+      "delta": [
+        0.0,
+        -0.01905,
+        0.0
+      ],
+      "boundsBefore": [
+        [
+          -0.0065,
+          -0.06365,
+          -4.7644
+        ],
+        [
+          0.0065,
+          -0.05065,
+          -4.6944
+        ]
+      ],
+      "boundsAfter": [
+        [
+          -0.0065,
+          -0.0827,
+          -4.7644
+        ],
+        [
+          0.0065,
+          -0.0697,
+          -4.6944
+        ]
+      ]
+    },
+    {
+      "geometry": "BM_CII_BAKED_SUPPORT_inputxml_04_node_130_kind_LINESTOP_axis_+Z-single-axial-od-gap-head",
+      "source": "InputXML actual restraint",
+      "rule": "AXIAL_LINESTOP_Z_VISUAL_RESOLVER_Y_NEG_OD_2_3",
+      "delta": [
+        0.0,
+        -0.01905,
+        0.0
+      ],
+      "boundsBefore": [
+        [
+          -0.04,
+          -0.09715,
+          -4.6944
+        ],
+        [
+          0.04,
+          -0.01715,
+          -4.6194
+        ]
+      ],
+      "boundsAfter": [
+        [
+          -0.04,
+          -0.1162,
+          -4.6944
+        ],
+        [
+          0.04,
+          -0.0362,
+          -4.6194
+        ]
+      ]
+    },
+    {
+      "geometry": "BM_CII_BAKED_SUPPORT_inputxml_06_node_205_kind_LIMIT_axis_X-axial-pair-plus-od-gap-shaft",
+      "source": "InputXML actual restraint",
+      "rule": "AXIAL_LIMIT_X_VISUAL_RESOLVER_Z_NEG_OD_2_3",
+      "delta": [
+        0.0,
+        0.0,
+        -0.059267
+      ],
+      "boundsBefore": [
+        [
+          -1.3588,
+          0.2915,
+          -1.1065
+        ],
+        [
+          -1.2888,
+          0.3045,
+          -1.0935
+        ]
+      ],
+      "boundsAfter": [
+        [
+          -1.3588,
+          0.2915,
+          -1.165767
+        ],
+        [
+          -1.2888,
+          0.3045,
+          -1.152767
+        ]
+      ]
+    },
+    {
+      "geometry": "BM_CII_BAKED_SUPPORT_inputxml_06_node_205_kind_LIMIT_axis_X-axial-pair-plus-od-gap-head",
+      "source": "InputXML actual restraint",
+      "rule": "AXIAL_LIMIT_X_VISUAL_RESOLVER_Z_NEG_OD_2_3",
+      "delta": [
+        0.0,
+        0.0,
+        -0.059267
+      ],
+      "boundsBefore": [
+        [
+          -1.2888,
+          0.258,
+          -1.14
+        ],
+        [
+          -1.2138,
+          0.338,
+          -1.06
+        ]
+      ],
+      "boundsAfter": [
+        [
+          -1.2888,
+          0.258,
+          -1.199267
+        ],
+        [
+          -1.2138,
+          0.338,
+          -1.119267
+        ]
+      ]
+    },
+    {
+      "geometry": "BM_CII_BAKED_SUPPORT_inputxml_06_node_205_kind_LIMIT_axis_X-axial-pair-minus-od-gap-shaft",
+      "source": "InputXML actual restraint",
+      "rule": "AXIAL_LIMIT_X_VISUAL_RESOLVER_Z_NEG_OD_2_3",
+      "delta": [
+        0.0,
+        0.0,
+        -0.059267
+      ],
+      "boundsBefore": [
+        [
+          -1.1388,
+          0.2915,
+          -1.1065
+        ],
+        [
+          -1.0688,
+          0.3045,
+          -1.0935
+        ]
+      ],
+      "boundsAfter": [
+        [
+          -1.1388,
+          0.2915,
+          -1.165767
+        ],
+        [
+          -1.0688,
+          0.3045,
+          -1.152767
+        ]
+      ]
+    },
+    {
+      "geometry": "BM_CII_BAKED_SUPPORT_inputxml_06_node_205_kind_LIMIT_axis_X-axial-pair-minus-od-gap-head",
+      "source": "InputXML actual restraint",
+      "rule": "AXIAL_LIMIT_X_VISUAL_RESOLVER_Z_NEG_OD_2_3",
+      "delta": [
+        0.0,
+        0.0,
+        -0.059267
+      ],
+      "boundsBefore": [
+        [
+          -1.2138,
+          0.258,
+          -1.14
+        ],
+        [
+          -1.1388,
+          0.338,
+          -1.06
+        ]
+      ],
+      "boundsAfter": [
+        [
+          -1.2138,
+          0.258,
+          -1.199267
+        ],
+        [
+          -1.1388,
+          0.338,
+          -1.119267
+        ]
+      ]
+    }
+  ],
+  "unchangedBecauseNonAxial": [
+    "REST +Y / Y-axis REST symbols",
+    "GUIDE lateral symbols",
+    "HOLDDOWN if present as vertical symbol",
+    "SPRING axis_Y coil-only at node 205",
+    "ANCHOR flat plates"
+  ]
+}

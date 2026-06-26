@@ -1,0 +1,155 @@
+{
+  "schema": "BM_CII_v63_component_metadata_fix/v1",
+  "sourceGlb": "/mnt/data/BM_CII_v62_LineNoSideload/BM_CII_Enriched_v62_line_no_sideload_engineering.glb",
+  "sourceXml": "/mnt/data/BM_CII_GLB_Benchmark_v8_BubbleCalloutLite/BM_CII_Enriched_v8_lite.XML",
+  "lineNoSideload": {
+    "10": "LINE XYZ"
+  },
+  "updatedNodeExtrasCount": 60,
+  "sampleUpdated": [
+    {
+      "nodeName": "PE_040_VALVE_330_TO_340-handwheel",
+      "componentId": "PE_040_VALVE_330_TO_340",
+      "fromNode": "330",
+      "toNode": "340",
+      "wallThickness": "7.500000",
+      "materialName": "A106 B",
+      "pressure": "2.000000",
+      "hydroPressure": "5.000000",
+      "temp1": "350.000000",
+      "lineNo": "LINE XYZ"
+    },
+    {
+      "nodeName": "PE_040_VALVE_330_TO_340-stem",
+      "componentId": "PE_040_VALVE_330_TO_340",
+      "fromNode": "330",
+      "toNode": "340",
+      "wallThickness": "7.500000",
+      "materialName": "A106 B",
+      "pressure": "2.000000",
+      "hydroPressure": "5.000000",
+      "temp1": "350.000000",
+      "lineNo": "LINE XYZ"
+    },
+    {
+      "nodeName": "PE_040_VALVE_330_TO_340-body",
+      "componentId": "PE_040_VALVE_330_TO_340",
+      "fromNode": "330",
+      "toNode": "340",
+      "wallThickness": "7.500000",
+      "materialName": "A106 B",
+      "pressure": "2.000000",
+      "hydroPressure": "5.000000",
+      "temp1": "350.000000",
+      "lineNo": "LINE XYZ"
+    },
+    {
+      "nodeName": "PE_039_PIPE_320_TO_330",
+      "componentId": "PE_039_PIPE_320_TO_330",
+      "fromNode": "320",
+      "toNode": "330",
+      "wallThickness": "7.500000",
+      "materialName": "A106 B",
+      "pressure": "2.000000",
+      "hydroPressure": "5.000000",
+      "temp1": "350.000000",
+      "lineNo": "LINE XYZ"
+    },
+    {
+      "nodeName": "PE_038_OLET_140_TO_320",
+      "componentId": "PE_038_OLET_140_TO_320",
+      "fromNode": "140",
+      "toNode": "320",
+      "wallThickness": "3.700000",
+      "materialName": "A106 B",
+      "pressure": "2.000000",
+      "hydroPressure": "5.000000",
+      "temp1": "350.000000",
+      "lineNo": "LINE XYZ"
+    },
+    {
+      "nodeName": "PE_037_RIGID_UNSPECIFIED_300_TO_310-rigid",
+      "componentId": "PE_037_RIGID_UNSPECIFIED_300_TO_310",
+      "fromNode": "300",
+      "toNode": "310",
+      "wallThickness": "7.800000",
+      "materialName": "A106 B",
+      "pressure": "2.000000",
+      "hydroPressure": "5.000000",
+      "temp1": "350.000000",
+      "lineNo": "LINE XYZ"
+    },
+    {
+      "nodeName": "PE_036_VALVE_290_TO_300-handwheel",
+      "componentId": "PE_036_VALVE_290_TO_300",
+      "fromNode": "290",
+      "toNode": "300",
+      "wallThickness": "7.800000",
+      "materialName": "A106 B",
+      "pressure": "2.000000",
+      "hydroPressure": "5.000000",
+      "temp1": "350.000000",
+      "lineNo": "LINE XYZ"
+    },
+    {
+      "nodeName": "PE_036_VALVE_290_TO_300-stem",
+      "componentId": "PE_036_VALVE_290_TO_300",
+      "fromNode": "290",
+      "toNode": "300",
+      "wallThickness": "7.800000",
+      "materialName": "A106 B",
+      "pressure": "2.000000",
+      "hydroPressure": "5.000000",
+      "temp1": "350.000000",
+      "lineNo": "LINE XYZ"
+    },
+    {
+      "nodeName": "PE_036_VALVE_290_TO_300-body",
+      "componentId": "PE_036_VALVE_290_TO_300",
+      "fromNode": "290",
+      "toNode": "300",
+      "wallThickness": "7.800000",
+      "materialName": "A106 B",
+      "pressure": "2.000000",
+      "hydroPressure": "5.000000",
+      "temp1": "350.000000",
+      "lineNo": "LINE XYZ"
+    },
+    {
+      "nodeName": "PE_035_PIPE_280_TO_290",
+      "componentId": "PE_035_PIPE_280_TO_290",
+      "fromNode": "280",
+      "toNode": "290",
+      "wallThickness": "7.800000",
+      "materialName": "A106 B",
+      "pressure": "2.000000",
+      "hydroPressure": "5.000000",
+      "temp1": "350.000000",
+      "lineNo": "LINE XYZ"
+    },
+    {
+      "nodeName": "PE_034_OLET_100_TO_280",
+      "componentId": "PE_034_OLET_100_TO_280",
+      "fromNode": "100",
+      "toNode": "280",
+      "wallThickness": "3.900000",
+      "materialName": "A106 B",
+      "pressure": "2.000000",
+      "hydroPressure": "5.000000",
+      "temp1": "350.000000",
+      "lineNo": "LINE XYZ"
+    },
+    {
+      "nodeName": "PE_033_PIPE_270_TO_150",
+      "componentId": "PE_033_PIPE_270_TO_150",
+      "fromNode": "270",
+      "toNode": "150",
+      "wallThickness": "3.900000",
+      "materialName": "A106 B",
+      "pressure": "2.000000",
+      "hydroPressure": "5.000000",
+      "temp1": "350.000000",
+      "lineNo": "LINE XYZ"
+    }
+  ]
+}

@@ -1,0 +1,272 @@
+name: RVM PCF CI
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'viewer/rvm-pcf-extract/**'
+      - 'viewer/converters/xml-cii2019-core/**'
+      - 'viewer/converters/inputxml-managed-stage/**'
+      - 'viewer/rvm-viewer/RvmProgressiveModelRootPatch.js'
+      - 'viewer/rvm/BrowserRvmRenderContractAdapter.js'
+      - 'viewer/rvm/BrowserRvmRemainingPrimitiveRuntimePatch.js'
+      - 'viewer/tabs/RvmSupportSummaryBridge.js'
+      - 'viewer/tabs/RvmSupportGeometryBridge.js'
+      - 'viewer/tabs/RvmSupportAttMappingBridge.js'
+      - 'viewer/tabs/RvmIntelligentSupportEngineBridge.js'
+      - 'viewer/tabs/model-converters/ModelConvertersTab.js'
+      - 'viewer/tabs/model-converters/inputxml-managed-stage-bridge.js'
+      - 'viewer/tabs/model-converters/converters/inputxml-to-stagedjson.js'
+      - 'viewer/tabs/model-converters/workflow/**'
+      - 'viewer/tabs/rvm-json-pcf-*.js'
+      - 'viewer/tabs/viewer3d-rvm-tab.js'
+      - 'viewer/tabs/viewer3d-rvm-tab-renderer.js'
+      - 'viewer/tabs/RvmViewerInteractionPatch.js'
+      - 'viewer/tabs/RvmNavigationModeArbiterBridge.js'
+      - 'viewer/tabs/RvmDeferredBridgeLoader.js'
+      - 'viewer/tabs/RvmToolbarCompactBridge.js'
+      - 'viewer/tabs/RvmToolbarOverflowController.js'
+      - 'viewer/tabs/RvmBottomDiagnosticsDrawerBridge.js'
+      - 'viewer/tabs/RvmModelHealthBridge.js'
+      - 'viewer/tabs/RvmModelHealthIssuesBridge.js'
+      - 'viewer/tabs/RvmObjectSearchBridge.js'
+      - 'viewer/tabs/RvmVisibilitySnapshotsBridge.js'
+      - 'viewer/tabs/RvmSelectionSetsBridge.js'
+      - 'viewer/tabs/RvmReportExportBridge.js'
+      - 'viewer/tabs/RvmNonPrimitiveSupportOverlayBridge.js'
+      - 'viewer/tabs/RvmNonPrimitiveSupportOverlayDetailsPanelBridge.js'
+      - 'viewer/tabs/RvmNonPrimitiveSupportOverlayHoverBridge.js'
+      - 'viewer/tabs/RvmNonPrimitiveSupportOverlayHardDisableBridge.js'
+      - 'viewer/tabs/RvmNonPrimitiveAutoBendBridge.js'
+      - 'viewer/tabs/RvmNonPrimitiveNodeMarkerBridge.js'
+      - 'viewer/tabs/RvmNonPrimitiveNodeMarkerDetailsPanelBridge.js'
+      - 'viewer/tabs/RvmNonPrimitiveNodeMarkerHoverBridge.js'
+      - 'viewer/tabs/RvmNonPrimitiveNodeMarkerSourceToolsBridge.js'
+      - 'viewer/tabs/RvmNonPrimitiveSourceToolsUiBridge.js'
+      - 'viewer/tabs/RvmLeftPanelResizeCollapseBridge.js'
+      - 'viewer/geometry-workspace/**'
+      - 'viewer/overlays/autobend/**'
+      - 'viewer/overlays/support/**'
+      - 'viewer/overlays/source-tools/**'
+      - 'viewer/overlays/nodes/**'
+      - 'viewer/core/app.js'
+      - 'viewer/core/app-label-perf-runtime.js'
+      - 'viewer/index.html'
+      - 'viewer/main-rhbg-fitguard.js'
+      - 'viewer/contracts/runtime-events.js'
+      - 'viewer/core/event-bus.js'
+      - 'viewer/core/state.js'
+      - 'viewer/tests/rvm-pcf-*.test.js'
+      - 'viewer/tests/rvm-viewer-ui-contract.test.js'
+      - 'viewer/tests/rvm-toolbar-more-tools.test.js'
+      - 'viewer/tests/rvm-toolbar-overflow-audit.test.js'
+      - 'viewer/tests/inputxml-direct-managed-stage.test.js'
+      - 'viewer/tests/inputxml-bend-element-length.test.js'
+      - 'viewer/tests/rvm-geometry-workspace-*.test.js'
+      - 'viewer/tests/nonprimitive-auto-bend-*.test.js'
+      - 'viewer/tests/nonprimitive-support-overlay-*.test.js'
+      - 'viewer/tests/nonprimitive-support-source-extraction.test.js'
+      - 'viewer/tests/nonprimitive-support-filter-diagnostics.test.js'
+      - 'viewer/tests/nonprimitive-support-managed-stage-fixtures.test.js'
+      - 'viewer/tests/nonprimitive-support-preview-smoke.test.js'
+      - 'viewer/tests/nonprimitive-support-pipe-segment-extraction.test.js'
+      - 'viewer/tests/nonprimitive-source-tools-ui.test.js'
+      - 'viewer/tests/nonprimitive-source-tools-stagedjson-controls.test.js'
+      - 'viewer/tests/nonprimitive-source-tools-diagnostics-export.test.js'
+      - 'viewer/tests/nonprimitive-source-tools-diagnostics-module.test.js'
+      - 'viewer/tests/nonprimitive-node-marker-*.test.js'
+      - 'viewer/tests/rvm-navigation-mode-arbiter.test.js'
+      - '.github/workflows/rvm-pcf-ci.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  rvm-pcf-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Verify XML CII master context
+        run: node viewer/tests/rvm-pcf-master-context.test.js
+
+      - name: Verify shared workflow adapters
+        run: node viewer/tests/rvm-pcf-shared-workflow-adapters.test.js
+
+      - name: Verify JSON/RVM PCF row enricher
+        run: node viewer/tests/rvm-pcf-row-enricher.test.js
+
+      - name: Verify JSON/RVM PCF adapter preview and run
+        run: node viewer/tests/rvm-pcf-json-adapter-preview-run.test.js
+
+      - name: Verify RVM viewer UI contracts
+        run: node viewer/tests/rvm-viewer-ui-contract.test.js
+
+      - name: Verify RVM More Tools overflow
+        run: node viewer/tests/rvm-toolbar-more-tools.test.js
+
+      - name: Verify RVM toolbar overflow audit
+        run: node viewer/tests/rvm-toolbar-overflow-audit.test.js
+
+      - name: Verify direct InputXML stagedJSON conversion
+        run: node viewer/tests/inputxml-direct-managed-stage.test.js
+
+      - name: Verify InputXML bend element length
+        run: node viewer/tests/inputxml-bend-element-length.test.js
+
+      - name: Verify raw support cylinders stay raw
+        run: node viewer/tests/rvm-pcf-raw-support-cylinder.test.js
+
+      - name: Verify non-primitive support overlay resolver
+        run: node viewer/tests/nonprimitive-support-overlay-resolver.test.js
+
+      - name: Verify non-primitive support source extraction
+        run: node viewer/tests/nonprimitive-support-source-extraction.test.js
+
+      - name: Verify non-primitive support filter diagnostics
+        run: node viewer/tests/nonprimitive-support-filter-diagnostics.test.js
+
+      - name: Verify non-primitive managed-stage support fixtures
+        run: node viewer/tests/nonprimitive-support-managed-stage-fixtures.test.js
+
+      - name: Verify non-primitive support preview smoke fixture
+        run: node viewer/tests/nonprimitive-support-preview-smoke.test.js
+
+      - name: Verify non-primitive support pipe segment extraction
+        run: node viewer/tests/nonprimitive-support-pipe-segment-extraction.test.js
+
+      - name: Verify non-primitive support overlay geometry
+        run: node viewer/tests/nonprimitive-support-overlay-geometry.test.js
+
+      - name: Verify non-primitive support overlay labels
+        run: node viewer/tests/nonprimitive-support-overlay-labels.test.js
+
+      - name: Verify non-primitive support overlay details
+        run: node viewer/tests/nonprimitive-support-overlay-details.test.js
+
+      - name: Verify non-primitive support overlay details panel
+        run: node viewer/tests/nonprimitive-support-overlay-details-panel.test.js
+
+      - name: Verify non-primitive support overlay details export
+        run: node viewer/tests/nonprimitive-support-overlay-details-export.test.js
+
+      - name: Verify non-primitive support overlay highlight
+        run: node viewer/tests/nonprimitive-support-overlay-highlight.test.js
+
+      - name: Verify non-primitive support overlay hover
+        run: node viewer/tests/nonprimitive-support-overlay-hover.test.js
+
+      - name: Verify non-primitive support overlay hard disable
+        run: node viewer/tests/nonprimitive-support-overlay-hard-disable.test.js
+
+      - name: Verify RVM navigation mode arbiter
+        run: node viewer/tests/rvm-navigation-mode-arbiter.test.js
+
+      - name: Verify non-primitive support coordinate mapper
+        run: node viewer/tests/nonprimitive-support-coordinate-mapper.test.js
+
+      - name: Verify non-primitive auto-bend gate
+        run: node viewer/tests/nonprimitive-auto-bend-gate.test.js
+
+      - name: Verify non-primitive auto-bend resolver
+        run: node viewer/tests/nonprimitive-auto-bend-resolver.test.js
+
+      - name: Verify explicit InputXML auto-bend records
+        run: node viewer/tests/nonprimitive-auto-bend-explicit-bend.test.js
+
+      - name: Verify non-primitive auto-bend preview integration
+        run: node viewer/tests/nonprimitive-auto-bend-preview-integration.test.js
+
+      - name: Verify non-primitive source tools UI
+        run: node viewer/tests/nonprimitive-source-tools-ui.test.js
+
+      - name: Verify non-primitive source tools stagedJSON controls
+        run: node viewer/tests/nonprimitive-source-tools-stagedjson-controls.test.js
+
+      - name: Verify non-primitive source tools diagnostics export
+        run: node viewer/tests/nonprimitive-source-tools-diagnostics-export.test.js
+
+      - name: Verify non-primitive source tools diagnostics module
+        run: node viewer/tests/nonprimitive-source-tools-diagnostics-module.test.js
+
+      - name: Verify non-primitive node marker core API
+        run: node viewer/tests/nonprimitive-node-marker-core-api.test.js
+
+      - name: Verify non-primitive node marker stale diagnostics
+        run: node viewer/tests/nonprimitive-node-marker-stale-diagnostics.test.js
+
+      - name: Verify non-primitive node marker deferred bridge
+        run: node viewer/tests/nonprimitive-node-marker-deferred-bridge.test.js
+
+      - name: Verify non-primitive node marker source tools
+        run: node viewer/tests/nonprimitive-node-marker-source-tools.test.js
+
+      - name: Verify non-primitive node marker overlay glyphs
+        run: node viewer/tests/nonprimitive-node-marker-overlay.test.js
+
+      - name: Verify non-primitive node marker hover
+        run: node viewer/tests/nonprimitive-node-marker-hover.test.js
+
+      - name: Verify non-primitive node marker details panel
+        run: node viewer/tests/nonprimitive-node-marker-details-panel.test.js
+
+      - name: Verify non-primitive node marker managed-stage fixture
+        run: node viewer/tests/nonprimitive-node-marker-managed-stage-fixture.test.js
+
+      - name: Verify non-primitive node marker overrides
+        run: node viewer/tests/nonprimitive-node-marker-overrides.test.js
+
+      - name: Verify RHBG RVM fit guard
+        run: |
+          set -o pipefail
+          node viewer/tests/rvm-pcf-rhbg-fitguard.test.js 2>&1 | grep -E 'FAIL|passed|failed'
+
+      - name: Verify geometry workspace import tree
+        run: node viewer/tests/rvm-geometry-workspace-import-tree.test.js
+
+      - name: Verify support-load input overrides
+        run: node viewer/tests/rvm-geometry-workspace-support-load-input-overrides.test.js
+
+      - name: Verify support-load master data
+        run: node viewer/tests/rvm-geometry-workspace-support-load-master-data.test.js
+
+      - name: Verify support-load master hydration
+        run: node viewer/tests/rvm-geometry-workspace-support-load-master-hydration.test.js
+
+      - name: Verify support-load enrichment conflict resolver
+        run: node viewer/tests/rvm-geometry-workspace-support-load-conflicts.test.js
+
+      - name: Verify support-load QA dashboard
+        run: node viewer/tests/rvm-geometry-workspace-support-load-qa-dashboard.test.js
+
+      - name: Verify support-load formula engine
+        run: node viewer/tests/rvm-geometry-workspace-support-load-formulas.test.js
+
+      - name: Verify support-load advanced profiles
+        run: node viewer/tests/rvm-geometry-workspace-support-load-advanced-profiles.test.js
+
+      - name: Verify support-load track certification
+        run: node viewer/tests/rvm-geometry-workspace-support-load-track-certification.test.js
+
+      - name: Verify support-load Access benchmark
+        run: node viewer/tests/rvm-geometry-workspace-support-load-access-benchmark.test.js
+
+      - name: Verify support-load Access fixture pack
+        run: node viewer/tests/rvm-geometry-workspace-support-load-access-fixture-pack.test.js
+
+      - name: Verify support-load Access fixture coverage
+        run: node viewer/tests/rvm-geometry-workspace-support-load-access-fixture-coverage.test.js
+
+      - name: Verify support-load Access fixture intake completion
+        run: node viewer/tests/rvm-geometry-workspace-support-load-access-fixture-intake-completion.test.js
+
+      - name: Verify support-load real model validation
+        run: node viewer/tests/rvm-geometry-workspace-support-load-real-model-validation.test.js
